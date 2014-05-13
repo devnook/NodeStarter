@@ -1,0 +1,34 @@
+<div>
+  <span ng-show="isLoggedIn">
+    {{currentUser.profile.displayName}}
+    <button ng-click="logout()">logout</button>
+  </span>
+  <span ng-show="!isLoggedIn">
+    <button ng-show="!showLogin" ng-init="showLogin=false;" ng-click="showLogin = !showLogin">Log in</button>
+  </span>
+  <form ng-show="!isLoggedIn && showLogin" name="loginForm">
+    <fieldset>
+        <legend>Sign in</legend>
+        <label for="email">email</label>
+        <input name="id" ng-model="user.email"><br>
+        <label for="password">password</label>
+        <input name="input" ng-model="user.password">
+    </fieldset>
+      <button ng-click="login()">sign in</button><br>
+      <button ng-click="facebook()">sign in with Facebook</button>
+      <button ng-click="google()">sign in with Google</button>
+      <p>No account yet? <a ng-init="showRegister=false;" ng-click="showRegister = !showRegister">sign up</a></p>
+  </form>
+  <form ng-show="!isLoggedIn && showRegister">
+    <fieldset>
+      <legend>Sign up</legend>
+      <label for="email">email</label>
+      <input name="id" ng-model="newUser.email" required><br>
+      <label for="password">password</label>
+      <input name="input" ng-model="newUser.password" required>
+    </fieldset>
+    <button ng-click="signup()">sign up</button>
+    <button ng-click="facebook()">sign up with Facebook</button>
+    <button ng-click="google()">sign up with Google</button>
+  </form>
+</div>

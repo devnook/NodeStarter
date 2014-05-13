@@ -1,0 +1,11 @@
+doctype html
+html(lang="en")
+  head
+    title Authentication
+    script(type='text/javascript').
+      window.onload = function() {
+        window.opener.dispatchEvent(new Event('facebook-login-success'));
+        window.close();
+      }
+  body
+    p Welcome!
