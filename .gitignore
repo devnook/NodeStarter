@@ -5,7 +5,6 @@ bower_components/
 tmp
 .DS_Store
 .idea
-.bowerrc
 .jshintrc
 *.sh
 */.sass-cache/*
