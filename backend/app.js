@@ -30,7 +30,6 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(require('node-compass')({mode: 'expanded'}));  // TODO(ewag): ??
 
 // URL handlers.
 var webRouter = require('./web/router')(passport);

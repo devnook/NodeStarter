@@ -1,0 +1,13 @@
+@import "compass/css3";
+
+/* Redefine Bootstrap CSS variables here */
+$brand-primary: #ff0000;
+
+/* Import Bootstrap CSS core */
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap-custom";
+
+/* Import optional Bootstrap CSS theme */
+@import "../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/theme";
+
+/* Import app specific stylesheets */
+@import "custom";
