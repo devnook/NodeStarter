@@ -4,6 +4,7 @@
 
 var express    = require('express');
 var Model = require('./models/model');
+var modelCtrl = require('./controllers/model');
 
 
 /**
@@ -31,73 +32,12 @@ var provideRouter = function(passport) {
    * Handling Model resource.
    */
 	router.route('/model')
-	  /**
-	   * Create a new Model.
-	   */
-		.post(function(req, res) {
-			var model = new Model();
-	 		model.name = req.body.name;
-			model.save(function(err) {
-				if (err) {
-					res.send(err);
-				}
-				res.json({ message: 'model created!' });
-			});
-		})
-		/**
-	   * List Models.
-	   */
-		.get(function(req, res) {
-			Model.find(function(err, models) {
-				if (err) {
-					res.send(err);
-				}
-				res.json(models)
-			})
-		});
+		.post(modelCtrl.add)
+		.get(modelCtrl.list);
 	router.route('/model/:model_id')
-	  /**
-	   * Get Model by id.
-	   */
-		.get(function(req, res) {
-			Model.findById(req.params.model_id, function(err, model) {
-				if (err) {
-					res.send(err);
-				}
-				res.json(model);
-			});
-		})
-		/**
-	   * Update a Model.
-	   */
-    .put(function(req, res) {
-  		Model.findById(req.params.model_id, function(err, model) {
-				if (err) {
-					res.send(err);
-				}
-				model.name = req.body.name;
-				model.save(function(err) {
-					if (err) {
-						res.send(err);
-					}
-					res.json({ message: 'Model updated!' });
-				});
-			});
-		})
-    /**
-	   * Delete a Model. Requires authentication.
-	   */
-		.delete(authenticate, function(req, res) {
-			Model.remove({
-				_id: req.params.model_id
-			}, function(err, model) {
-				if (err) {
-					res.send(err);
-				}
-				res.json({ message: 'Successfully deleted' });
-			});
-		});
-
+		.get(modelCtrl.getById)
+    .put(modelCtrl.save)
+		.delete(authenticate, modelCtrl.delete);
   return router;
 }
 
